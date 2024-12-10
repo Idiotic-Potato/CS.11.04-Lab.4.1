@@ -1,7 +1,38 @@
-public class Main { public static void main(String[] args) {System.out.println(parenthesesCheck("()"));System.out.println(parenthesesCheck(")(()))"));System.out.println(parenthesesCheck("("));System.out.println(parenthesesCheck("(())((()())())"));System.out.println(reverseInteger(1234));System.out.println(reverseInteger(2468));System.out.println(reverseInteger(7771));System.out.println(encryptThis("Hello good day"));System.out.println(encryptThis("Ready set go"));System.out.println(decipherThis("72olle 103doo 100ya"));System.out.println(decipherThis("82yade 115te 103o"));}public static boolean parenthesesCheck(String str){int count=0;for(int i = 0; i < str.length();i++){if(str.charAt(i)=='('){count++;}else{count--;}if(count<0){return false;}}return count==0;}public static String reverseInteger(int num){String returnString="";for(int i=String.valueOf(num).length()-1;i>=0;i--){returnString=returnString+String.valueOf(num).charAt(i);}return returnString;}public static String encryptThis(String str){str+=" ";String rString="";int fLetter=0;int lLetter=0;rString+=(int)str.charAt(fLetter);for(int i=1;i<str.length();i++) {if(str.charAt(i)==' '){lLetter=i-1;}if (str.charAt(i)==' '){rString+=(lLetter!=fLetter?str.charAt(lLetter):"") + (lLetter-fLetter>1?str.substring(fLetter+2,lLetter)+str.charAt(fLetter+1):"");}if (str.charAt(i-1)==' '){fLetter=i;rString += " " + (int)str.charAt(fLetter);}}return rString;}public static String decipherThis(String str){str += " ";String rString = "";int[] fLetter = new int[]{0, 0};int lLetter = 0;fLetter[0] = 0;for (int j = 0; Character.isDigit(str.charAt(j)); j++){fLetter[1] = j;}rString += (char)Integer.parseInt(str.substring(fLetter[0], fLetter[1] + 1));for (int i = fLetter[1] + 1; i < str.length(); i++) {if (str.charAt(i) == ' '){lLetter = i - 1;}if (str.charAt(i) == ' '){rString += (lLetter != fLetter[1] ? str.charAt(lLetter) : "") + (lLetter - fLetter[1] > 1 ? str.substring(fLetter[1] + 2, lLetter) + str.charAt(fLetter[1] + 1) : "");}if (str.charAt(i - 1) == ' '){fLetter[0] = i;for (int j = fLetter[0]; Character.isDigit(str.charAt(j)); j++){fLetter[1] = j;}rString += " " + (char)Integer.parseInt(str.substring(fLetter[0], fLetter[1] + 1));}}return rString;}
+public class Main {
+    public static void main(String[] args) {
 
+    }
+    public static boolean parenthesesCheck(String str){
+        int count1 = 0;
+        int count2 = 0;
+        for(int i = 0;i<str.length();i++){
+            if(str.charAt(i)=='(')
+                count1++;
 
+        }
+        for(int i = 0; i<str.length();i++){
+            if(str.charAt(i)==')')
+                count2++;
+        }
+        return count1==count2;
+    }
+    public static String reverseInteger(int number) {
 
+        String numberString = String.valueOf(number);
+
+        char[] charArray = numberString.toCharArray();
+
+        for(int i = 0; i<charArray.length/2;i++){
+            char temp = charArray[i];
+            charArray[i]=charArray[charArray.length - 1 -i];
+            charArray[charArray.length - 1 - i] = temp;
+        }
+        String reversed = new String(charArray);
+        if(number<0){
+            reversed = "-"+reversed;
+        }
+        return reversed;
+}
 
 
 
